@@ -1,0 +1,16 @@
+{
+  "name": "week-4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "csv-db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash.isequalwith": "^4.4.0",
+    "mongodb": "^4.9.1",
+    "mongoose": "^6.5.4"
+  }
+}
