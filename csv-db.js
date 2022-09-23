@@ -3,10 +3,10 @@ var url = "mongodb://0.0.0.0:27017/";
 const fs = require('fs');
 var args = process.argv[2];
 let file = process.argv[3];
-let csv = '';
 module.exports= {csvtojson,json2csv}
 
  function csvtojson(csv) {
+    let result = [];
     var lines = csv.replace(/\r/g, "").split("\n");
     var headers;
     headers = lines[0].split(",");
@@ -21,9 +21,11 @@ module.exports= {csvtojson,json2csv}
         }
         result.push(obj);
     }
+    return result;
 }
 
  function json2csv(json){
+    let csv = '';
     csv = [
        [
            "name",
@@ -38,11 +40,10 @@ module.exports= {csvtojson,json2csv}
    ]
        .map(e => e.join(","))
        .join("\n");
+       return csv
    }
    
 if (args === 'write') {
-    var result = [];
-     
     const data = fs.readFileSync(file, 'utf8');
     csvtojson(data)
 
@@ -66,6 +67,7 @@ else if (args === 'read') {
         var dbo = db.db("userdb");
         dbo.collection("users").find({}).toArray(function (err, result) {
             if (err) throw err;
+            console.log(result)
             json2csv(result)
             fs.writeFile(file, csv, err => {
                 if (err) {
