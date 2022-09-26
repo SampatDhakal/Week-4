@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-mongoose.connect("mongodb://0.0.0.0:27017/users")
+const mongoose = require("mongoose")
 
 const Schema = mongoose.Schema(
     {
@@ -17,3 +16,7 @@ const Schema = mongoose.Schema(
     },
     { collection: "script" }
 );
+
+const scripts = mongoose.model("scripts", Schema)
+module.exports = {scripts}
+
